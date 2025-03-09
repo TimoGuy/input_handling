@@ -34,7 +34,6 @@ add_library(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/input_handling.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/input_handling.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/input_keyboard_mouse.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/input_reporting.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

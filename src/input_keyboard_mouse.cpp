@@ -50,7 +50,7 @@ void input_handling::report_mouse_position_change(vec2 position)
     glm_vec2_sub(position, s_prev_mouse_position, delta);
     glm_vec2_copy(position, s_prev_mouse_position);
 
-    auto& set{ get_state_set(0) };
+    auto& set{ get_state_set_writing_handle(0) };
     glm_vec2_copy(delta, set.gameplay.camera_delta);
     glm_vec2_copy(position, set.ui.cursor_position);
     glm_vec2_copy(delta, set.level_editor.camera_delta);
@@ -58,13 +58,13 @@ void input_handling::report_mouse_position_change(vec2 position)
 
 void input_handling::report_mouse_scroll_input_change(float_t y_delta)
 {
-    get_state_set(0).ui.scroll_delta = y_delta;
+    get_state_set_writing_handle(0).ui.scroll_delta = y_delta;
 }
 
 // Internal helpers.
 void input_handling::process_key_mouse_control(Key_mouse_control control, bool is_pressed)
 {
-    auto& set{ get_state_set(0) };
+    auto& set{ get_state_set_writing_handle(0) };
     switch (control)
     {
     case Key_mouse_control::GP_MOVEMENT_LEFT:

@@ -110,7 +110,7 @@ enum class Key_mouse_control
 }  // namespace input_handling
 
 
-#undef INPUT_STATE___VEC2
-#undef INPUT_STATE__IVEC2
-#undef INPUT_STATE__FLOAT
-#undef INPUT_STATE___BOOL
+#undef INPUT_STATE___VEC2(var_name)
+#undef INPUT_STATE__IVEC2(var_name)
+#undef INPUT_STATE__FLOAT(var_name)
+#undef INPUT_STATE___BOOL(var_name)
