@@ -38,7 +38,7 @@ input_handling::Input_state_set& input_handling::get_state_set_writing_handle(ui
     return s_all_input_state_sets[(s_buffer_offset + 1) % k_num_buffers][idx];
 }
 
-const input_handling::Input_state_set& input_handling::get_state_set(uint32_t idx)
+const input_handling::Input_state_set& input_handling::get_state_set_reading_handle(uint32_t idx)
 {
     return s_all_input_state_sets[s_buffer_offset % k_num_buffers][idx];
 }
