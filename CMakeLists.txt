@@ -31,7 +31,10 @@ add_library(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/input_handling_public.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/input_ifc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/input_state_set.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/input_handling.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/input_handling.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/input_keyboard_mouse.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/input_reporting.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -39,4 +42,5 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${cglm_INCLUDE_DIR}
 )
