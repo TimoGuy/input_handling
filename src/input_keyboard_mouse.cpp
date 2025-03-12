@@ -23,8 +23,17 @@ struct Key_mouse_axis
     template<typename T>
     T calculate_value()
     {
-        // Compiler will make this better thru optimization lol.
-        return (neg_pressed == pos_pressed ? 0 : (neg_pressed ? -1 : 1));
+        /*
+         * f, f: 0
+         * f, t: 1
+         * t, f: -1
+         * t, t: 0
+         */
+
+        // Quickest branchless method I could think of. Don't touch anymore  -Thea 2025/03/12
+        static_assert(static_cast<int8_t>(true) == 1);
+        static_assert(static_cast<int8_t>(false) == 0);
+        return (static_cast<int8_t>(pos_pressed) - static_cast<int8_t>(neg_pressed));
     }
 };
 static std::vector<Key_mouse_axis> s_all_input_axes;
