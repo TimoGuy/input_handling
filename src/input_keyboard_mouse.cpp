@@ -24,11 +24,15 @@ struct Key_mouse_axis
     T calculate_value()
     {
         // @NOTE: This is the best branchless way I could think of.
-        static_assert(false == 0x00);
-        static_assert(true == 0xff);  // @TODO: START HERE!!!!!! For the branchless calc this needs to be true
-        constexpr int8_t neg_value{ -1 };
-        constexpr int8_t pos_value{ 1 };
-        return (neg_value & neg_pressed) + (pos_value & pos_pressed);
+        //   HOWEVER, true != 0xff so it doesn't work :(
+        // static_assert(false == 0x00);
+        // static_assert(true == 0xff);
+        // constexpr int8_t neg_value{ -1 };
+        // constexpr int8_t pos_value{ 1 };
+        // return (neg_value & neg_pressed) + (pos_value & pos_pressed);
+
+        // Okay, this is the branched way ig haha.
+        return (neg_pressed == pos_pressed ? 0 : (neg_pressed ? -1 : 1));
     }
 };
 static std::vector<Key_mouse_axis> s_all_input_axes;
@@ -135,7 +139,8 @@ void input_handling::report_mouse_scroll_input_change(float_t y_delta)
 // Internal helpers.
 void input_handling::process_key_mouse_control(Key_mouse_control control, bool is_pressed)
 {
-    if (s_control_to_axis_control_map.find(control) != s_control_to_axis_control_map.end())
+    if (s_control_to_axis_control_map.find(control) !=
+        s_control_to_axis_control_map.end())
     {
         // Update control map axis.
         *s_control_to_axis_control_map.at(control) = is_pressed;
@@ -206,13 +211,13 @@ void input_handling::process_key_mouse_control(Key_mouse_control control, bool i
 
     case Key_mouse_control::LE_MOVEMENT_LEFT:
     case Key_mouse_control::LE_MOVEMENT_RIGHT:
-        set.ui.navigate_movement[0] =
+        set.level_editor.movement[0] =
             s_all_input_axes[LE_MOVEMENT_HORIZONTAL].calculate_value<float_t>();
         break;
 
     case Key_mouse_control::LE_MOVEMENT_UP:
     case Key_mouse_control::LE_MOVEMENT_DOWN:
-        set.ui.navigate_movement[1] =
+        set.level_editor.movement[1] =
             s_all_input_axes[LE_MOVEMENT_VERTICAL].calculate_value<float_t>();
         break;
 
