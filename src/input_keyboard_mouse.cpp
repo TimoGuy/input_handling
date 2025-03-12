@@ -23,15 +23,7 @@ struct Key_mouse_axis
     template<typename T>
     T calculate_value()
     {
-        // @NOTE: This is the best branchless way I could think of.
-        //   HOWEVER, true != 0xff so it doesn't work :(
-        // static_assert(false == 0x00);
-        // static_assert(true == 0xff);
-        // constexpr int8_t neg_value{ -1 };
-        // constexpr int8_t pos_value{ 1 };
-        // return (neg_value & neg_pressed) + (pos_value & pos_pressed);
-
-        // Okay, this is the branched way ig haha.
+        // Compiler will make this better thru optimization lol.
         return (neg_pressed == pos_pressed ? 0 : (neg_pressed ? -1 : 1));
     }
 };
