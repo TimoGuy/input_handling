@@ -8,6 +8,7 @@
 namespace input_handling
 {
 
+void init_key_mouse_adapter();
 void set_key_binding_map(std::unordered_multimap<int32_t, Key_mouse_control>&& key_binding_map);
 void set_mousebutton_binding_map(std::unordered_multimap<int32_t, Key_mouse_control>&& mousebutton_binding_map);
 
