@@ -30,7 +30,7 @@ struct Key_mouse_axis
          * t, t: 0
          */
 
-        // Quickest branchless method I could think of. Don't touch anymore  -Thea 2025/03/12
+        // Quickest branchless method I could think of. Don't touch anymore.  -Thea 2025/03/12
         static_assert(static_cast<int8_t>(true) == 1);
         static_assert(static_cast<int8_t>(false) == 0);
         return (static_cast<int8_t>(pos_pressed) - static_cast<int8_t>(neg_pressed));
