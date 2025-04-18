@@ -1,10 +1,6 @@
 #pragma once
 
 #include "cglm/cglm.h"
-#define INPUT_STATE___VEC2(var_name) vec2 var_name{ 0.0f, 0.0f }
-#define INPUT_STATE__IVEC2(var_name) ivec2 var_name{ 0, 0 }
-#define INPUT_STATE__FLOAT(var_name) float_t var_name{ 0.0f }
-#define INPUT_STATE___BOOL(var_name) bool var_name{ false }
 
 
 namespace input_handling
@@ -12,6 +8,11 @@ namespace input_handling
 
 struct Input_state_set
 {
+#define INPUT_STATE___VEC2(var_name) vec2 var_name{ 0.0f, 0.0f }
+#define INPUT_STATE__IVEC2(var_name) ivec2 var_name{ 0, 0 }
+#define INPUT_STATE__FLOAT(var_name) float_t var_name{ 0.0f }
+#define INPUT_STATE___BOOL(var_name) bool var_name{ false }
+
     struct Gameplay
     {
         INPUT_STATE___VEC2(camera_delta);
@@ -52,6 +53,11 @@ struct Input_state_set
         ui.scroll_delta = 0.0f;
         glm_vec2_zero(level_editor.camera_delta);
     }
+
+#undef INPUT_STATE___VEC2
+#undef INPUT_STATE__IVEC2
+#undef INPUT_STATE__FLOAT
+#undef INPUT_STATE___BOOL
 };  // struct Input_state_set
 
 enum class Key_mouse_control
@@ -108,9 +114,3 @@ enum class Key_mouse_control
 };  // enum class Key_mouse_control
 
 }  // namespace input_handling
-
-
-#undef INPUT_STATE___VEC2
-#undef INPUT_STATE__IVEC2
-#undef INPUT_STATE__FLOAT
-#undef INPUT_STATE___BOOL
